@@ -14,16 +14,15 @@ public class OpenFoodFacts {
     }
 
     CodeProvider codeProvider=new CodeProvider();
-    public String openFoodFacts() throws IOException {
-        String uri="https://world.openfoodfacts.org/api/v0/product/"+codeProvider+ ".json";
+
+    public String openFoodFacts(CodeProvider codeProvider) throws IOException {
+        String uri="https://world.openfoodfacts.org/api/v0/product/"+codeProvider + ".json";
         System.out.println(uri);
     return get(uri);
 
     }
     private String get (String uri) throws IOException {
-       try{
-           URL url=new URL(uri);
-
+        URL url=new URL(uri);
         HttpURLConnection connection=(HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         BufferedReader in=new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -40,12 +39,6 @@ public class OpenFoodFacts {
         }
         return stringBuilder.toString();
 
-    }catch (IllegalArgumentException e){
-           e.printStackTrace();
-       }catch (IOException e){
-           e.printStackTrace();
-       }
-       return null;
 
-}
+    }
 }
